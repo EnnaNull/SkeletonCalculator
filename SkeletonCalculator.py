@@ -1,9 +1,7 @@
 
 
 
-from tkinter import N
-from typing import final
-from weakref import finalize
+
 
 
 def compound():
