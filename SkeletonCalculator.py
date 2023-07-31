@@ -1,6 +1,11 @@
 
 
 
+from tkinter import N
+from typing import final
+from weakref import finalize
+
+
 def compound():
     p = float(input("What is your starting amount\n"))
     r = float(input("What is your rate (in decimal)\n"))
@@ -48,7 +53,7 @@ def binary():
         elif(digit1 == '1' and digit2 == '1' and carry == True):
             total.append( '1')
             carry = True
-            print(2)
+            print('2')
         elif(digit1 == '0' and digit2 == '1' and carry == False):
             total.append( '1')
             print('3')
@@ -96,13 +101,37 @@ def binary():
             while len(word2) > len(word):
                 word.insert(0, "0")
         for i in range(len(word) -1,-1,-1):
-            print(word[i],word2[i],carry)
+           
             add(word[i], word2[i])
-
-
+        
     split(first, second)
+    if carry == True:
+        total.append('1')
+        print("carried")
+        carry = False
+    def binaryToDecimal(binary):
+        decimals = []
+        place = 0
+        finalInt = 0
+        for i in range(len(binary)):
+            
+            tempInt = int(binary[0]) * (2**place)
+            binary.pop(0)
+            decimals.append(tempInt)
+            place = place +1 
+            
+        for number in decimals:
+            finalInt = finalInt + number
+        return(finalInt)
+        
+
+
+        
+    
     totalJoined = ''.join(total)
-    print("Binary Addition:", totalJoined[::-1], "Carry = "+ str(carry))
+    totalReversed = totalJoined[::-1] #reverse the output because it appends backwards
+    print("Binary Addition:",totalReversed, "Carry = "+ str(carry),"\n")
+    print(totalReversed, "is equal to:",binaryToDecimal(total),"\n")
 
     
         
